@@ -219,8 +219,8 @@ public class TankBase extends Boat {
             if (this.getControllingPassenger() instanceof Player player) {
                 float giroDelTanque = this.getYRot() - this.yRotO;
                 if (giroDelTanque != 0) {
-                    player.setYRot(player.getYRot() + giroDelTanque);
-                    player.yRotO += giroDelTanque;
+                    player.setYRot(player.getYRot() - giroDelTanque);
+                    player.yRotO -= giroDelTanque;
                 }
             }
             this.yRotO = this.getYRot();
