@@ -111,7 +111,7 @@ public class TankBase extends Boat {
 
     public float getYawAim() {
         if (this.getControllingPassenger() instanceof Player player) {
-            float target_yaw = Mth.wrapDegrees(player.getViewYRot(1.0F) - this.getYRot());
+            float target_yaw = Mth.wrapDegrees(player.getViewYRot(1.0F));// - this.getYRot());
             return target_yaw;
         }
         return this.current_yaw;
@@ -145,7 +145,7 @@ public class TankBase extends Boat {
         delta_yaw = Mth.clamp(delta_yaw, -this.yawRotSpeed, this.yawRotSpeed);
 
         this.current_yaw = this.getYawAim();
-        this.current_pitch = this.getPitchAim();
+        this.current_pitch = delta_pitch;
 
 
 
