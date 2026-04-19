@@ -60,13 +60,6 @@ public class TankBase extends Boat {
     }
 
     @SubscribeEvent
-    public static void onRenderPlayer(RenderPlayerEvent.Pre event) {
-        if (event.getEntity().getVehicle() instanceof TankBase) {
-            event.setCanceled(true);
-        }
-    }
-
-    @SubscribeEvent
     public static void onEntityMount(EntityMountEvent event) {
         if (event.getEntityBeingMounted() instanceof TankBase) {
             event.getEntityMounting().noPhysics = event.isMounting();

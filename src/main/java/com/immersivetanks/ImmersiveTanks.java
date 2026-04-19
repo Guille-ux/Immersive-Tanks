@@ -3,6 +3,7 @@ package com.immersivetanks;
 import com.immersivetanks.client.model.bt_5;
 import com.immersivetanks.client.renderer.BT5Renderer;
 import com.immersivetanks.entity.custom.BT5;
+import com.immersivetanks.entity.custom.TankBase;
 import com.immersivetanks.entity.projectiles.projectile45;
 import com.immersivetanks.item.custom.Bt5Item;
 import com.mojang.logging.LogUtils;
@@ -20,6 +21,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -134,6 +136,12 @@ public class ImmersiveTanks
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents
     {
+        @SubscribeEvent
+        public static void onRenderPlayer(RenderPlayerEvent.Pre event) {
+            if (event.getEntity().getVehicle() instanceof TankBase) {
+                event.setCanceled(true);
+            }
+        }
         @SubscribeEvent
         public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
             event.registerLayerDefinition(bt_5.LAYER_LOCATION, bt_5::createBodyLayer);

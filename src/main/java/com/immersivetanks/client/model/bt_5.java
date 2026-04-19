@@ -129,7 +129,7 @@ public class bt_5<T extends BT5> extends EntityModel<T> {
 		float degToRad = (float)Math.PI / 180.0f;
 
 
-		this.turret.yRot = (-entity.current_yaw) * degToRad;
+		this.turret.yRot = (entity.current_yaw - 180.0f) * degToRad;
 
 		this.cannon.xRot = entity.current_pitch * degToRad;
 	}
