@@ -137,12 +137,6 @@ public class ImmersiveTanks
     public static class ClientModEvents
     {
         @SubscribeEvent
-        public static void onRenderPlayer(RenderPlayerEvent.Pre event) {
-            if (event.getEntity().getVehicle() instanceof TankBase) {
-                event.setCanceled(true);
-            }
-        }
-        @SubscribeEvent
         public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
             event.registerLayerDefinition(bt_5.LAYER_LOCATION, bt_5::createBodyLayer);
         }
@@ -158,6 +152,15 @@ public class ImmersiveTanks
             // Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+        }
+    }
+    @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
+    public static class ClientForgeEvents {
+        @SubscribeEvent
+        public static void onRenderPlayer(RenderPlayerEvent.Pre event) {
+            if (event.getEntity().getVehicle() instanceof TankBase) {
+                event.setCanceled(true);
+            }
         }
     }
 }
