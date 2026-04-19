@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "IOW",
+    "i i"
+  ],
+  "key": {
+    "#": {
+      "item": "immersivetanks:bt5_turret"
+    },
+    "I": {
+      "item": "immersivetanks:engine"
+    },
+    "O": {
+      "item": "immersivetanks:bt5_hull"
+    },
+    "W": {
+      "item": "minecraft:iron_block"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "immersivetanks:bt_5",
+    "count": 1
+  }
+}
