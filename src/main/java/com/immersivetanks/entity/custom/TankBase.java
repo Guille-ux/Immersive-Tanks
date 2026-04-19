@@ -144,8 +144,8 @@ public class TankBase extends Boat {
 
         delta_yaw = Mth.clamp(delta_yaw, -this.yawRotSpeed, this.yawRotSpeed);
 
-        this.current_yaw = this.getYawAim();
-        this.current_pitch = delta_pitch;
+        this.current_yaw += delta_yaw;
+        this.current_pitch += delta_pitch;
 
 
 
@@ -164,11 +164,15 @@ public class TankBase extends Boat {
                 this.entityData.set(DATA_YAW, this.current_yaw);
                 this.entityData.set(DATA_PITCH, this.current_pitch);
             }
+            // Forzamos a la cámara del jugador a rotar lo mismo que el metal
+            player.setYRot(this.getYRot());
+            player.yRotO = this.getYRot();
 
-            this.setDeltaMovement(new Vec3(vel.x, gravity, vel.z));
-            this.move(MoverType.SELF, this.getDeltaMovement());
+
 
         }
+        this.setDeltaMovement(new Vec3(vel.x, gravity, vel.z));
+        this.move(MoverType.SELF, this.getDeltaMovement());
     }
 
     @Override
