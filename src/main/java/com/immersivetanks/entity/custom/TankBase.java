@@ -144,8 +144,8 @@ public class TankBase extends Boat {
 
         delta_yaw = Mth.clamp(delta_yaw, -this.yawRotSpeed, this.yawRotSpeed);
 
-        this.current_yaw += delta_yaw;
-        this.current_pitch += delta_pitch;
+        this.current_yaw = this.getYawAim();
+        this.current_pitch = this.getPitchAim();
 
 
 
