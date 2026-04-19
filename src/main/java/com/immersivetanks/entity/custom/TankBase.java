@@ -164,9 +164,7 @@ public class TankBase extends Boat {
                 this.entityData.set(DATA_YAW, this.current_yaw);
                 this.entityData.set(DATA_PITCH, this.current_pitch);
             }
-            // Forzamos a la cámara del jugador a rotar lo mismo que el metal
-            player.setYRot(this.getYRot());
-            player.yRotO = this.getYRot();
+
 
 
 
@@ -218,6 +216,13 @@ public class TankBase extends Boat {
 
 
             this.setYRot(this.getYRot() + rotationInput);
+            if (this.getControllingPassenger() instanceof Player player) {
+                float giroDelTanque = this.getYRot() - this.yRotO;
+                if (giroDelTanque != 0) {
+                    player.setYRot(player.getYRot() + giroDelTanque);
+                    player.yRotO += giroDelTanque;
+                }
+            }
             this.yRotO = this.getYRot();
 
 
